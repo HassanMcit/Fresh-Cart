@@ -79,7 +79,7 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="pb-20">
       {pressed && <Loading/>}
       <h1 className="text-5xl text-center text-secondary mt-10 mb-24">
         Register
