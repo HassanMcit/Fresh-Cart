@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className={`${open ? 'flex' : 'hidden'} w-full flex-col md:flex-row  flex-grow md:flex md:justify-between md:w-auto`} id="navbar-default">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 items-start  border-gray-100 md:bg-transparent rounded-t-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                <NavLink to="/" className="block py-2 px-3 text-gray-900 bg-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Home</NavLink>
+                <NavLink to="/" className="block py-2 px-3 text-gray-900 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Home</NavLink>
                 </li>
                 <li>
                 <NavLink to="products" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</NavLink>
@@ -37,35 +37,35 @@ export default function Navbar() {
             </ul>
             <ul className="font-medium flex flex-wrap  p-4 md:p-0 items-center  border-gray-100 md:bg-transparent rounded-b-lg bg-gray-50 md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-facebook"></i></NavLink>
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-facebook"></i></Link>
                 </li>
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-twitter"></i></NavLink>
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-twitter"></i></Link>
                 </li>
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-instagram"></i></NavLink>
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-instagram"></i></Link>
                 </li>
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-tiktok"></i></NavLink>
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-tiktok"></i></Link>
                 </li>
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-youtube"></i></NavLink>
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black" aria-current="page"><i className="fa-brands fa-youtube"></i></Link>
                 </li>
                 <li>
-                <NavLink to="#" className="block py-2 px-3 text-neutral-800 rounded md:bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black relative" aria-current="page">
+                <Link to="#" className="block py-2 px-3 text-neutral-800 rounded bg-transparent md:text-black md:p-0 dark:text-white md:dark:text-black relative" aria-current="page">
                     <i className="fa-solid fa-cart-shopping"></i>
                     <div className='absolute bg-green-500 w-[18px] h-[18px] rounded-full center-content top-0 end-0 md:-top-3 md:-end-2 text-white text-sm'>8</div>    
-                </NavLink>
+                </Link>
                 </li>
                 <ul className='flex md:space-x-4'>
                     <li>
-                    <NavLink to="register" className="block py-2 px-3 text-gray-900 bg-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Register</NavLink>
+                    <NavLink to="register" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Register</NavLink>
                     </li>
                     <li>
-                    <NavLink to="login" className="block py-2 px-3 text-gray-900 bg-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Login</NavLink>
+                    <NavLink to="login" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Login</NavLink>
                     </li>
                     <li>
-                    <span className="block py-2 px-3 text-gray-900 bg-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Logout</span>
+                    <span className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Logout</span>
                     </li>
                 </ul>
             </ul>
