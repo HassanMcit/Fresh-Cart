@@ -85,7 +85,7 @@ export default function Register() {
         Register
       </h1>
 
-      <form className="max-w-lg mx-auto" onSubmit={handleSubmit(formSubmit)}>
+      <form className="max-w-lg mx-10 md:mx-auto" onSubmit={handleSubmit(formSubmit)}>
         <div className="relative z-0 w-full mb-5 group">
           <div
             className={`text-lg ${
