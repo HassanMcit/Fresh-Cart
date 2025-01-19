@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Loading from "../Loading/Loading";
@@ -20,7 +20,7 @@ export default function ResetPassword() {
         "string.empty": "Email is required",
         "string.pattern.base": "Invalid email format",
       }),
-      newPassword: Joi.string()
+    newPassword: Joi.string()
       .pattern(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
       )
@@ -43,11 +43,13 @@ export default function ResetPassword() {
   async function formSubmit(value) {
     setPressed(true);
     try {
-      let { data:{token} } = await axios.put(
+      let {
+        data: { token },
+      } = await axios.put(
         "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
         value
       );
-      localStorage.setItem('token', token)
+      localStorage.setItem("token", token);
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -68,9 +70,13 @@ export default function ResetPassword() {
       setTimeout(() => {
         navigate("/home");
       }, 3000);
-    } catch ({response:{data:{message}}}) {
+    } catch ({
+      response: {
+        data: { message },
+      },
+    }) {
       console.log(message);
-      
+
       Swal.fire({
         html: `<h2 class="text-red-700 font-bold capitalize">${message}</h2>`,
         icon: "error",
@@ -98,10 +104,30 @@ export default function ResetPassword() {
     setPassword(!password);
   }
 
+  useEffect(() => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "info",
+      title: "Enter New Password",
+    });
+  }, []);
+
   return (
     <div className="pb-20">
       {pressed && <Loading />}
-      <h1 className="text-5xl text-center text-secondary mt-10 mb-24">Reset Password</h1>
+      <h1 className="text2xl md:text-5xl text-center text-secondary mt-10 mb-24">
+        Reset Password
+      </h1>
 
       <form
         className="max-w-lg mx-10 md:mx-auto"
@@ -198,7 +224,12 @@ export default function ResetPassword() {
           >
             Submit
           </button>
-          <Link to="/forgetpassword" className="text-xl text-secondary hover:text-blue-600 hover:underline">Forget Password</Link>
+          <Link
+            to="/forgetpassword"
+            className="text-xl text-secondary hover:text-blue-600 hover:underline"
+          >
+            Forget Password
+          </Link>
         </div>
       </form>
     </div>
