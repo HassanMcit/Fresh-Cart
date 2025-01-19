@@ -65,7 +65,7 @@ export default function ResetPassword() {
         icon: "success",
         title: "Password Change successfully",
       });
-      console.log(data);
+      console.log(token);
       reset();
       setTimeout(() => {
         navigate("/home");
