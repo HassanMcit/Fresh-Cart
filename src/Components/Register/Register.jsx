@@ -18,6 +18,7 @@ export default function Register() {
     formState: { errors },
     watch,
     reset,
+    trigger,
   } = useForm();
 
   async function formSubmit(value) {
@@ -40,7 +41,7 @@ export default function Register() {
       });
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully"
+        title: "Sign up successfully"
       });
       console.log(data);
       reset();
@@ -108,6 +109,7 @@ export default function Register() {
               minLength: { value: 3, message: "At least 3 Character" },
               maxLength: { value: 31, message: "Max. 31 character" },
             })}
+            onBlur={() => trigger('name')}
             autoComplete="username"
           />
           <label
@@ -150,7 +152,8 @@ export default function Register() {
                 value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                 message: "Enter Valid Email",
               },
-            })}
+            onBlur: () => trigger('email')
+          })}
           />
           <label
             htmlFor="email"
@@ -197,6 +200,7 @@ export default function Register() {
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                 message: "Enter Valid Password",
               },
+              onBlur: () => trigger('password'),
             })}
           />
           <label
@@ -243,6 +247,8 @@ export default function Register() {
               validate: (value) =>
                 value === watch("password") ||
                 "Password and Confirm Password do not match",
+                onBlur: () => trigger('rePassword'),
+                onChange: () => trigger('rePassword'),
             })}
           />
           <label

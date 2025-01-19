@@ -9,5 +9,5 @@
 }
 
 .active {
-    @apply text-white bg-secondary
+    @apply text-white bg-secondary md:text-secondary
 }
