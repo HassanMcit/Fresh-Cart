@@ -2,15 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import 'animate.css';
+import "animate.css";
 import Loading from "../Loading/Loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [password, setPassword] = useState(false);
   const [rePassword, setRePassword] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,38 +37,42 @@ export default function Register() {
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
           toast.onmouseleave = Swal.resumeTimer;
-        }
+        },
       });
       Toast.fire({
         icon: "success",
-        title: "Sign up successfully"
+        title: "Sign up successfully",
       });
       console.log(data);
       reset();
       setTimeout(() => {
-        navigate('/login')
-      }, 3000)
-    } catch ({response:{data:{message}}}) {
+        navigate("/login");
+      }, 3000);
+    } catch ({
+      response: {
+        data: { message },
+      },
+    }) {
       Swal.fire({
         title: message,
-        icon: 'error',
+        icon: "error",
         showClass: {
           popup: `
             animate__animated
             animate__fadeInUp
             animate__faster
-          `
+          `,
         },
         hideClass: {
           popup: `
             animate__animated
             animate__fadeOutDown
             animate__faster
-          `
-        }
+          `,
+        },
       });
     }
-    setPressed(false)
+    setPressed(false);
   }
 
   function handlePassword() {
@@ -81,12 +85,15 @@ export default function Register() {
 
   return (
     <div className="pb-20">
-      {pressed && <Loading/>}
+      {pressed && <Loading />}
       <h1 className="text-5xl text-center text-secondary mt-10 mb-24">
         Register
       </h1>
 
-      <form className="max-w-lg mx-10 md:mx-auto" onSubmit={handleSubmit(formSubmit)}>
+      <form
+        className="max-w-lg mx-10 md:mx-auto"
+        onSubmit={handleSubmit(formSubmit)}
+      >
         <div className="relative z-0 w-full mb-5 group">
           <div
             className={`text-lg ${
@@ -108,8 +115,9 @@ export default function Register() {
               required: { value: true, message: "Name is Required" },
               minLength: { value: 3, message: "At least 3 Character" },
               maxLength: { value: 31, message: "Max. 31 character" },
+              onBlur: () => trigger("name"),
+              onChange: () => trigger("name"),
             })}
-            onBlur={() => trigger('name')}
             autoComplete="username"
           />
           <label
@@ -152,8 +160,9 @@ export default function Register() {
                 value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                 message: "Enter Valid Email",
               },
-            onBlur: () => trigger('email')
-          })}
+              onBlur: () => trigger("email"),
+              onChange: () => trigger("email"),
+            })}
           />
           <label
             htmlFor="email"
@@ -200,7 +209,8 @@ export default function Register() {
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                 message: "Enter Valid Password",
               },
-              onBlur: () => trigger('password'),
+              onBlur: () => trigger("password"),
+              onChange: () => trigger("password"),
             })}
           />
           <label
@@ -247,8 +257,8 @@ export default function Register() {
               validate: (value) =>
                 value === watch("password") ||
                 "Password and Confirm Password do not match",
-                onBlur: () => trigger('rePassword'),
-                onChange: () => trigger('rePassword'),
+              onBlur: () => trigger("rePassword"),
+              onChange: () => trigger("rePassword"),
             })}
           />
           <label
@@ -269,12 +279,15 @@ export default function Register() {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        >
-          Submit
-        </button>
+        <div className="center-content justify-between">
+          <button
+            type="submit"
+            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Submit
+          </button>
+          <div className=" text-xl text-secondary hover:text-blue-600 hover:underline"><Link to="/login">Already Have Account</Link></div>
+        </div>
       </form>
     </div>
   );

@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 
-export default function Login() {
+export default function ResetPassword() {
   const [password, setPassword] = useState(false);
   const [pressed, setPressed] = useState(false);
   const navigate = useNavigate();
@@ -20,13 +20,13 @@ export default function Login() {
         "string.empty": "Email is required",
         "string.pattern.base": "Invalid email format",
       }),
-    password: Joi.string()
+      newPassword: Joi.string()
       .pattern(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
       )
       .required()
       .messages({
-        "string.empty": "Password is required",
+        "string.empty": "New Password is required",
         "string.pattern.base":
           "Password must be at least 8 characters, include one uppercase, one lowercase, one number, and one special character",
       }),
@@ -43,12 +43,11 @@ export default function Login() {
   async function formSubmit(value) {
     setPressed(true);
     try {
-      let { data } = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/signin",
+      let { data:{token} } = await axios.put(
+        "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
         value
       );
-      localStorage.setItem('user', JSON.stringify(data.user));
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('token', token)
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -62,21 +61,20 @@ export default function Login() {
       });
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully",
+        title: "Password Change successfully",
       });
+      console.log(data);
       reset();
       setTimeout(() => {
         navigate("/home");
       }, 3000);
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
+    } catch ({response:{data:{message}}}) {
+      console.log(message);
+      
       Swal.fire({
-        title: message,
+        html: `<h2 class="text-red-700 font-bold capitalize">${message}</h2>`,
         icon: "error",
-        confirmButtonColor: `#F27474`,
+        confirmButtonColor: `rgb(185 28 28)`,
         showClass: {
           popup: `
             animate__animated
@@ -103,7 +101,7 @@ export default function Login() {
   return (
     <div className="pb-20">
       {pressed && <Loading />}
-      <h1 className="text-5xl text-center text-secondary mt-10 mb-24">Login</h1>
+      <h1 className="text-5xl text-center text-secondary mt-10 mb-24">Reset Password</h1>
 
       <form
         className="max-w-lg mx-10 md:mx-auto"
@@ -153,7 +151,7 @@ export default function Login() {
           <div
             onClick={handlePassword}
             className={`text-lg ${
-              errors.password ? "text-red-700" : "text-secondary"
+              errors.newPassword ? "text-red-700" : "text-secondary"
             } absolute end-0 top-3`}
           >
             <i
@@ -163,32 +161,32 @@ export default function Login() {
           <input
             type={`${password ? "text" : "password"}`}
             autoComplete="new-password"
-            id="password"
+            id="newPassword"
             className={`block py-2.5 px-0 w-full text-sm ${
-              errors.password
+              errors.newPassword
                 ? "text-red-900 border-red-300 dark:text-red-700 dark:focus:border-red-500 focus:border-red-600"
                 : "text-gray-900 border-gray-300 dark:text-white dark:focus:border-green-500 focus:border-green-600"
             } bg-transparent border-0 border-b-2  appearance-none  dark:border-gray-600  focus:outline-none focus:ring-0  peer`}
             placeholder=" "
-            {...register("password", {
-              onBlur: () => trigger("password"),
-              onChange: () => trigger("password"),
+            {...register("newPassword", {
+              onBlur: () => trigger("newPassword"),
+              onChange: () => trigger("newPassword"),
             })}
           />
           <label
-            htmlFor="password"
+            htmlFor="newPassword"
             className={`${
-              errors.password
+              errors.newPassword
                 ? "text-red-500 dark:text-red-400 peer-focus:text-red-600 peer-focus:dark:text-red-500"
                 : "text-gray-500 dark:text-gray-400 peer-focus:text-green-600 peer-focus:dark:text-green-500"
             } peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
           >
-            Password
+            New Password
           </label>
-          {errors.password && (
+          {errors.newPassword && (
             <p className="mt-2 text-sm text-red-600 dark:text-red-500">
               <span className="font-medium">Oops!</span>{" "}
-              {errors.password.message}
+              {errors.newPassword.message}
             </p>
           )}
         </div>

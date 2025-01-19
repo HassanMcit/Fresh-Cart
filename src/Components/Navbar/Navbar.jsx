@@ -26,13 +26,13 @@ export default function Navbar() {
                 <NavLink to="/" className="block py-2 px-3 text-gray-900 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Home</NavLink>
                 </li>
                 <li>
-                <NavLink to="products" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</NavLink>
+                <NavLink to="/products" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</NavLink>
                 </li>
                 <li>
-                <NavLink to="categories" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</NavLink>
+                <NavLink to="/categories" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</NavLink>
                 </li>
                 <li>
-                <NavLink to="brands" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Brands</NavLink>
+                <NavLink to="/brands" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Brands</NavLink>
                 </li>
             </ul>
             <ul className="font-medium flex flex-wrap  p-4 md:p-0 items-center  border-gray-100 md:bg-transparent rounded-b-lg bg-gray-50 md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -59,10 +59,10 @@ export default function Navbar() {
                 </li>
                 <ul className='flex md:space-x-4'>
                     <li>
-                    <NavLink to="register" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Register</NavLink>
+                    <NavLink to="/register" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Register</NavLink>
                     </li>
                     <li>
-                    <NavLink to="login" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Login</NavLink>
+                    <NavLink to="/login" className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Login</NavLink>
                     </li>
                     <li>
                     <span className="block py-2 px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500" aria-current="page">Logout</span>
