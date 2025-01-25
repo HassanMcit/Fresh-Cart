@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <div className="container py-24">
-        <div className="grid md:grid-col-2 lg:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
             {products.map(e => <DisplayProductHome
              key={e.id}
               img={e.imageCover} 

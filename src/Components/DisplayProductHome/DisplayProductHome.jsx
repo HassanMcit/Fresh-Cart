@@ -3,7 +3,7 @@ import React from 'react'
 export default function DisplayProductHome({img, category, title, price, ratingsAverage}) {
   return (
     <div className='card cursor-pointer hover:scale-105 transition-transform duration-300'>
-     <div className="max-w-sm overflow-hidden group/parent shadow-md hover:shadow-slate-900  bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+     <div className="mx-10 md:mx-0 overflow-hidden group/parent shadow-md hover:shadow-slate-900  bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
            
            <div>
            <img className="rounded-t-lg w-full block" src={img} alt='ddd' />
