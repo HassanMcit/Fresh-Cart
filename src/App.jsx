@@ -11,6 +11,7 @@ import DesignForget from "./Components/DesignForget/DesignForget";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import VerifyCode from "./Components/VerifyCode/VerifyCode";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
+import AuthContext from "./Context/AuthContext/AuthContext";
 
 function App() {
   const x = createBrowserRouter([
@@ -28,16 +29,22 @@ function App() {
         { path: "*", element: <NotFound /> },
       ],
     },
-    { path: "ForgetPassword", element: <DesignForget />, children: [
-      {index: true, element: <ForgetPassword/>},
-      {path: 'verifycode', element: <VerifyCode/>},
-      {path: 'ResetPassword', element: <ResetPassword/>}
-    ] },
+    {
+      path: "ForgetPassword",
+      element: <DesignForget />,
+      children: [
+        { index: true, element: <ForgetPassword /> },
+        { path: "verifycode", element: <VerifyCode /> },
+        { path: "ResetPassword", element: <ResetPassword /> },
+      ],
+    },
   ]);
 
   return (
     <>
-      <RouterProvider router={x} />
+      <AuthContext >
+        <RouterProvider router={x} />
+      </AuthContext>
     </>
   );
 }
