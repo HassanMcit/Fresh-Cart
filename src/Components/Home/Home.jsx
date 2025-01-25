@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import DisplayProductHome from "../DisplayProductHome/DisplayProductHome";
 import axios from "axios";
+import Loading from "../Loading/Loading";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function getProduct() {
     try {
@@ -11,7 +13,7 @@ export default function Home() {
         `https://ecommerce.routemisr.com/api/v1/products`
       );
       setProducts(data);
-      console.log(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -22,7 +24,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container py-24">
+    {isLoading ? <Loading/> : (<div className="container py-24">
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
             {products.map(e => <DisplayProductHome
              key={e.id}
@@ -32,7 +34,7 @@ export default function Home() {
               price={e.price}
               ratingsAverage={e.ratingsAverage}/>)}
         </div>
-      </div>
+      </div>)}
     </>
   );
 }
