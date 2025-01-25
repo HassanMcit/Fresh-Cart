@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Loading from "../Loading/Loading";
 import { Link, useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
+import { Tkn } from "../../Context/AuthContext/AuthContext";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState(false);
   const [pressed, setPressed] = useState(false);
   const navigate = useNavigate();
+  const {setToken} = useContext(Tkn)
 
   const sample = Joi.object({
     email: Joi.string()
@@ -49,12 +51,14 @@ export default function ResetPassword() {
         "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
         value
       );
+      
       localStorage.setItem("token", token);
+      setToken(token);
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 500,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
@@ -69,7 +73,7 @@ export default function ResetPassword() {
       reset();
       setTimeout(() => {
         navigate("/home");
-      }, 3000);
+      }, 500);
     } catch ({
       response: {
         data: { message },

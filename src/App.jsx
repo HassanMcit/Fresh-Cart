@@ -12,6 +12,7 @@ import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import VerifyCode from "./Components/VerifyCode/VerifyCode";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import AuthContext from "./Context/AuthContext/AuthContext";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const x = createBrowserRouter([
@@ -19,11 +20,11 @@ function App() {
       path: "",
       element: <Design />,
       children: [
-        { index: true, element: <Home /> },
-        { path: "Home", element: <Home /> },
-        { path: "Products", element: <Products /> },
-        { path: "Categories", element: <Categories /> },
-        { path: "Brands", element: <Brands /> },
+        { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
+        { path: "Home", element: <ProtectedRoute><Home /></ProtectedRoute> },
+        { path: "Products", element: <ProtectedRoute><Products /></ProtectedRoute> },
+        { path: "Categories", element: <ProtectedRoute><Categories /></ProtectedRoute> },
+        { path: "Brands", element: <ProtectedRoute><Brands /></ProtectedRoute> },
         { path: "Register", element: <Register /> },
         { path: "Login", element: <Login /> },
         { path: "*", element: <NotFound /> },

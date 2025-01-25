@@ -161,6 +161,17 @@ export default function Navbar() {
               )}
               <ul className="flex md:space-x-4">
                 {token ? (
+                    
+                  <>
+                  <li>
+                    <span
+                    onClick={handleLogout}
+                      className="block py-2 font-bold cursor-pointer hover:text-secondary px-3 text-gray-900  rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-green-500"
+                      aria-current="page"
+                    >
+                      
+                    </span>
+                  </li>
                   <li>
                     <span
                     onClick={handleLogout}
@@ -170,6 +181,7 @@ export default function Navbar() {
                       Logout
                     </span>
                   </li>
+                  </>
                 ) :(
                   <>
                     <li>
